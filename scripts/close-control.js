@@ -9,6 +9,11 @@ class CloseControl {
         this.container.on("mouseover", this.showHover.bind(this));
         this.container.on("mouseup", this.showNormal.bind(this));
         this.container.on("mouseout", this.showNormal.bind(this));
+        
+        this.container.on("click", () => {
+            location.href = "https://github.com/staticfunction";
+        })
+        
         this.showNormal();
     }
 

@@ -12,18 +12,22 @@ class Game {
     onCommand(ev) {
         switch(ev.keyCode) {
             case 37:
+            case 65:
                 this.snake.moveLeft();
                 break;
 
             case 38:
+            case 87:
                 this.snake.moveUp();
                 break;
 
             case 39:
+            case 68:
                 this.snake.moveRight();
                 break;
 
             case 40:
+            case 83:
                 this.snake.moveDown();
                 break;
         }
@@ -65,10 +69,13 @@ class Game {
             return;
         }
 
-        this.update();
+        if(!this.updating)
+            this.update();
     }
 
     update() {
+        this.updating = true;
+
         try {
             this.snake.move();
         }
@@ -95,8 +102,9 @@ class Game {
                 if(this.onGameOverCallback)
                     this.onGameOverCallback();
             }
-
         }
+
+        this.updating = false;
     }
 
     speedUp() {

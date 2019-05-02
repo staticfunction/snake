@@ -51,7 +51,7 @@ class Board {
             this.occupyIndex(index);
         }
         catch(e) {
-            let {x, y} = this.mapIndemapIndexToGrid(index);
+            let {x, y} = this.mapIndexToGrid(index);
             e.grid = {x, y};
             throw e;
         }

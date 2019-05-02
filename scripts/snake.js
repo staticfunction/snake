@@ -9,7 +9,7 @@ class Snake {
         this.snakeVX = 1;
         this.snakeVY = 0;
         this.tails = [];
-        this.direction = "left";
+        this.direction = "right";
     }
 
     move() {
