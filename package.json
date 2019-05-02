@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Snake Game",
   "scripts": {
-    "start": "http-server ./"
+    "start": "http-server -p 3000 ./"
   },
   "keywords": [
     "snake",
