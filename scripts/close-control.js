@@ -6,17 +6,19 @@ class CloseControl {
         this.container.interactive = true;
         this.container.cursor = "pointer";
 
-        this.on("mouseover", this.showHover.bind(this));
-        this.on("mouseup", this.showNormal.bind(this));
-
+        this.container.on("mouseover", this.showHover.bind(this));
+        this.container.on("mouseup", this.showNormal.bind(this));
+        this.container.on("mouseout", this.showNormal.bind(this));
         this.showNormal();
     }
 
     showHover() {
-
+        this.container.removeChildren();
+        this.container.addChild(this.factory.CloseIconClicked());
     }
 
     showNormal() {
-
+        this.container.removeChildren();
+        this.container.addChild(this.factory.CloseIcon());
     }
 }

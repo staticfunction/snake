@@ -9,9 +9,12 @@ class Snake {
         this.snakeVX = 1;
         this.snakeVY = 0;
         this.tails = [];
+        this.direction = "left";
     }
 
     move() {
+        this.updateDirection();
+
         try {
             this.prevHeadX = this.nextHeadX;
             this.prevHeadY = this.nextHeadY;
@@ -65,35 +68,55 @@ class Snake {
         this.tails.push({sprite: tail, x: this.nextHeadX, y: this.nextHeadY});
     }
 
+    updateDirection() {
+        switch(this.direction) {
+            case "up":
+                this.snakeVX = 0;
+                this.snakeVY = -1;
+                break;
+
+            case "down":
+                this.snakeVX = 0;
+                this.snakeVY = 1;
+                break;
+
+            case "left":
+                this.snakeVX = -1;
+                this.snakeVY = 0;
+                break;
+
+            case "right":
+                this.snakeVX = 1;
+                this.snakeVY = 0;
+                break;
+        }
+    }
+
     moveUp() {
         if(this.snakeVY == 1)
             return;
 
-        this.snakeVX = 0;
-        this.snakeVY = -1;
+        this.direction = "up";
     }
 
     moveDown() {
         if(this.snakeVY == -1)
             return;
 
-        this.snakeVX = 0;
-        this.snakeVY = 1;
+        this.direction = "down";
     }
 
     moveLeft() {
         if(this.snakeVX == 1)
             return;
 
-        this.snakeVX = -1;
-        this.snakeVY = 0;
+        this.direction = "left";
     }
 
     moveRight() {
         if(this.snakeVX == -1)
             return;
 
-        this.snakeVX = 1;
-        this.snakeVY = 0;
+        this.direction = "right";
     }
 }
