@@ -4,7 +4,7 @@ class Game {
         this.container = container;
         this.board = board;
         this.factory = factory;
-        this.timeToNextFrameTotal = 10;
+        this.timeToNextFrameTotal = 12.5;
         this.timeToNextFrame = this.timeToNextFrameTotal;
         this.over = false;
     }
@@ -99,8 +99,8 @@ class Game {
         }
     }
 
-    reset() {
-
+    speedUp() {
+        this.timeToNextFrameTotal -= 0.25;
     }
 
     growSnake() {

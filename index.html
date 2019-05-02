@@ -6,11 +6,19 @@
 </head>
   <script src="node_modules/pixi.js/dist/pixi.min.js"></script>
 <body>
+  <style>
+    @font-face {
+      font-family: Ultra;
+      src: url(assets/UltraCondensedSansSerif_0.ttf);
+    }
+  </style>
+
   <script src="scripts/setup.js"></script>
   <script src="scripts/board.js"></script>
   <script src="scripts/snake.js"></script>
   <script src="scripts/game.js"></script>
   <script src="scripts/sound-control.js"></script>
+  <script src="scripts/close-control.js"></script>
   <audio src="assets/Target-picked.m4a" preload="auto" id="scoreSound"></audio>
   <audio src="assets/Theme.m4a" preload="auto" id="themeSound" loop></audio>
 

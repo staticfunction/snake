@@ -5,37 +5,60 @@ function init(app) {
         
         let soundControlContainer = new PIXI.Container();
         app.stage.addChild(soundControlContainer);
-        soundControlContainer.x = 700;
-        soundControlContainer.y = 2;
+        soundControlContainer.x = 650;
+        soundControlContainer.y = 10;
 
+        let scoreSound = document.getElementById("scoreSound");
+        let themeSound = document.getElementById("themeSound");
+        new SoundControl(soundControlContainer, [scoreSound, themeSound], factory);
+
+        let closeIconContainer = new PIXI.Container();
+        app.stage.addChild(closeIconContainer);
+        closeIconContainer.x = 730;
+        closeIconContainer.y = 15;
+        new CloseControl(closeIconContainer, factory);
 
         let container = new PIXI.Container();
         container.width = container.height = 800;
         container.y = 214;
         
         app.stage.addChild(container);
-
+        
         let board = new Board(800, 800, 50);
-    
+        
         let game = new Game(container, board, factory);
         game.start();
-
-        let scoreSound = document.getElementById("scoreSound");
-        let themeSound = document.getElementById("themeSound");
-
-        let soundControl = new SoundControl(soundControlContainer, [scoreSound, themeSound], factory);
 
         addEventListener("keyup", () => {
             if(themeSound.paused)
                 themeSound.play();
         })
-        
+
+        let targetIcon = factory.Target();
+        app.stage.addChild(targetIcon);
+        targetIcon.x = 10;
+        targetIcon.y = 20;
+
+        let scoreText = new PIXI.Text("0", {fontFamily : 'Ultra', fontSize: 60, fill : 0xff1111});
+        app.stage.addChild(scoreText);
+        scoreText.x = 80;
+        scoreText.y = 15;
+
+        let score = 0;
+
         game.onScore(() => {
+            score++;
+            scoreText.text = score;
+
             scoreSound.pause();
             scoreSound.currentTime = 0;
             scoreSound.play();
 
+            game.speedUp();
+        })
 
+        game.onGameOver(() => {
+            scoreText.text = `${score}: GAME OVER`;
         })
 
         app.ticker.add(game.onTick.bind(game));
